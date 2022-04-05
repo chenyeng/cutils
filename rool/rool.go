@@ -1,7 +1,7 @@
 package rool
 
 import (
-	"cutils/panErr"
+	"github.com/chenyeng/cutils/panErr"
 	"sync"
 )
 
