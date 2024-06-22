@@ -39,8 +39,8 @@ func (p *pool) Go(ctx context.Context, f func() error) {
 	if p.err != nil {
 		return
 	}
+	p.wg.Add(1)
 	p.p.CtxGo(ctx, func() {
-		p.wg.Add(1)
 		defer p.wg.Done()
 		defer func() {
 			if e := recover(); e != nil {
@@ -50,5 +50,6 @@ func (p *pool) Go(ctx context.Context, f func() error) {
 		if err := f(); err != nil {
 			p.err = err
 		}
+
 	})
 }
